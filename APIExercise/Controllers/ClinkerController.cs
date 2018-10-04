@@ -20,10 +20,16 @@ namespace APIExercise.Controllers
             _prison = new Prison();
         }
 
-        [HttpGet]
+        [HttpGet("AllClinkers")]
         public ActionResult<IEnumerable<Clinker>> GetAllClinkers()
         {
             return _prison.ClinkerPrison;
+        }
+
+        [HttpPost("AddToPrison")]
+        public void AddClinkerToPrison()
+        {
+            _prison.Add(new Clinker { Name = "Tom", IsLonely = true });
         }
     }
 }
