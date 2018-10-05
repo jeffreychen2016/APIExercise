@@ -44,5 +44,10 @@ namespace APIExercise.DataAccess
             clinker.Id = ClinkerNetwork.Any() ? ClinkerNetwork.Max(record => record.Id) + 1 : 1;
             ClinkerNetwork.Add(clinker);
         }
+
+        public Clinker GetById(int id)
+        {
+            return ClinkerNetwork.FirstOrDefault(clinker => clinker.Id == id);
+        }
     }
 }
