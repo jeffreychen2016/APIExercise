@@ -58,5 +58,15 @@ namespace APIExercise.Controllers
                           select clinker;
             return clinkers.ToList();
         }
+
+        [HttpGet("ListMyServices/{myId}")]
+        // https:///localhost:44334/api/Clinker/ListMyServices/1
+        public ActionResult<IEnumerable<Service>> ListMyServices(int myId)
+        {
+            var myService = from clinker in _network.ClinkerNetwork
+                            where clinker.Id == myId
+                            select clinker.Services;
+            return Ok(myService);
+        }
     }
 }
