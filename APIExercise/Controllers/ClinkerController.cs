@@ -54,8 +54,8 @@ namespace APIExercise.Controllers
         public ActionResult<IEnumerable<Clinker>> FindClinkerByInterest(Interest interest)
         {
             var clinkers = from clinker in _network.ClinkerNetwork
-                          where clinker.Interests.Contains(interest)
-                          select clinker;
+                           where clinker.Interests.Contains(interest)
+                           select clinker;
             return clinkers.ToList();
         }
 
@@ -77,6 +77,16 @@ namespace APIExercise.Controllers
             var friend = _network.GetById(friendId);
 
             me.FriendList.Add(friend);
+            return Ok();
+        }
+
+        [HttpPut("{myId}/AddEnemy/{enemyId}")]
+        public IActionResult AddEnemy(int myId, int EnemyId)
+        {
+            var me = _network.GetById(myId);
+            var enemy = _network.GetById(EnemyId);
+
+            me.EnemyList.Add(enemy);
             return Ok();
         }
     }
