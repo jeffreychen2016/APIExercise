@@ -89,5 +89,18 @@ namespace APIExercise.Controllers
             me.EnemyList.Add(enemy);
             return Ok();
         }
+
+        [HttpPut("{myId}/PotentialCrew/{friendId}")]
+        public ActionResult<IEnumerable<Clinker>> ListFriendsFriend(int myId, int friendId)
+        {
+            var me = _network.GetById(myId);
+            var friend = _network.GetById(friendId);
+
+            var myFriends = from clinker in _network.ClinkerNetwork
+                                where clinker.Id == myId
+                                select clinker.FriendList;
+            return Ok(myFriends);
+            // friendsfriend.Select(cl)
+        }
     }
 }
