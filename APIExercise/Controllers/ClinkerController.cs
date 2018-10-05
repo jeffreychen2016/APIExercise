@@ -68,5 +68,16 @@ namespace APIExercise.Controllers
                             select clinker.Services;
             return Ok(myService);
         }
+
+        [HttpPut("{myId}/AddFriend/{friendId}")]
+        //https:///localhost:44334/api/Clinker/1/AddFriend/2
+        public IActionResult AddFriend(int myId, int friendId)
+        {
+            var me = _network.GetById(myId);
+            var friend = _network.GetById(friendId);
+
+            me.FriendList.Add(friend);
+            return Ok();
+        }
     }
 }

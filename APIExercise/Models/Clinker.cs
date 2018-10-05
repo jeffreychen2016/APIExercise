@@ -13,5 +13,6 @@ namespace APIExercise.Models
         public List<Service> Services { get; set; } = new List<Service>();
         // *** need to initialize the list, otherwise when set the property in clinker, will get null exeception
         public List<Interest> Interests { get; set; } = new List<Interest>();
+        public List<Clinker> FriendList { get; set; } = new List<Clinker>();
     }
 }
