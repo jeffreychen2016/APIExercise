@@ -15,9 +15,9 @@ namespace APIExercise.DataAccess
         {
             ClinkerPrison = new List<Clinker>
             {
-                new Clinker { Id = 1, Name = "Joe", IsLonely = true},
-                new Clinker { Id = 2, Name = "Bob", IsLonely = true},
-                new Clinker { Id = 3, Name = "Kee", IsLonely = true},
+                new Clinker { Id = 1, Name = "Joe", IsLonely = true, Interests = { Interest.BoardGame, Interest.Reading } },
+                new Clinker { Id = 2, Name = "Bob", IsLonely = true, Interests = { Interest.Reading} },
+                new Clinker { Id = 3, Name = "Kee", IsLonely = true, Interests = { Interest.Reading} },
             };
         }
 

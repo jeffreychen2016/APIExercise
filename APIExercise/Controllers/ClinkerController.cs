@@ -31,10 +31,11 @@ namespace APIExercise.Controllers
         [HttpPost("AddToPrison")]
         public void AddClinkerToPrison(Clinker clinker)
         {
-             _prison.Add(clinker);
+            _prison.Add(clinker);
         }
 
         [HttpPost("JoinNetwork")]
+        // {"name": "Joe","isLonely": true}
         public IActionResult JoinClickerNewwork(Clinker clinker)
         {
             if (clinker.IsLonely)
@@ -46,6 +47,16 @@ namespace APIExercise.Controllers
             {
                 return Content("You are not lonely,so...FUCK OFF!");
             }
+        }
+
+        [HttpGet("FindClinkerByInterest/{interest}")]
+        // https:///localhost:44334/api/Clinker/FindClinkerByInterest/Reading
+        public ActionResult<IEnumerable<Clinker>> FindClinkerByInterest(Interest interest)
+        {
+            var clinkers = from clinker in _network.ClinkerNetwork
+                          where clinker.Interests.Contains(interest)
+                          select clinker;
+            return clinkers.ToList();
         }
     }
 }

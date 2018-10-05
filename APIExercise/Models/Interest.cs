@@ -1,6 +1,8 @@
 ﻿namespace APIExercise.Models
 {
-    public class Interest
+    public enum Interest
     {
+        Reading,
+        BoardGame
     }
 }
