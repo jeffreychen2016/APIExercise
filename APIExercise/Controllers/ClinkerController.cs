@@ -14,10 +14,12 @@ namespace APIExercise.Controllers
     public class ClinkerController : ControllerBase
     {
         private Prison _prison;
+        private Network _network;
 
         public ClinkerController()
         {
             _prison = new Prison();
+            _network = new Network();
         }
 
         [HttpGet("AllClinkers")]
@@ -27,9 +29,23 @@ namespace APIExercise.Controllers
         }
 
         [HttpPost("AddToPrison")]
-        public void AddClinkerToPrison()
+        public void AddClinkerToPrison(Clinker clinker)
         {
-            _prison.Add(new Clinker { Name = "Tom", IsLonely = true });
+             _prison.Add(clinker);
+        }
+
+        [HttpPost("JoinNetwork")]
+        public IActionResult JoinClickerNewwork(Clinker clinker)
+        {
+            if (clinker.IsLonely)
+            {
+                _network.JoinNetwork(clinker);
+                return Content("A new clinker join the network");
+            }
+            else
+            {
+                return Content("You are not lonely,so...FUCK OFF!");
+            }
         }
     }
 }
