@@ -12,6 +12,5 @@ namespace APIExercise.Models
         public bool IsLonely { get; set; }
         public List<Service> Services { get; set; }
         public List<Interest> Interests { get; set; }
-        
     }
 }
