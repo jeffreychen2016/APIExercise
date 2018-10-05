@@ -15,9 +15,27 @@ namespace APIExercise.DataAccess
         {
             ClinkerNetwork = new List<Clinker>
             {
-                new Clinker { Id = 1, Name = "Joe", IsLonely = true, Interests = { Interest.BoardGame, Interest.Reading } },
-                new Clinker { Id = 2, Name = "Bob", IsLonely = true, Interests = { Interest.Reading } },
-                new Clinker { Id = 3, Name = "Kee", IsLonely = true, Interests = { Interest.Reading } },
+                new Clinker
+                {
+                    Id = 1, Name = "Joe",
+                    IsLonely = true,
+                    Interests = { Interest.BoardGame, Interest.Reading } ,
+                    Services = { new Service { Name = "Barber", Description = "Cut your hair" } }
+                },
+                new Clinker
+                {
+                    Id = 2, Name = "Bob",
+                    IsLonely = true,
+                    Interests = { Interest.Reading },
+                    Services = { new Service { Name = "Message", Description = "Full body message"} }
+                },
+                new Clinker
+                {
+                    Id = 3, Name = "Kee",
+                    IsLonely = true,
+                    Interests = { Interest.Reading },
+                    Services = { new Service { Name = "Story Reader", Description = "One stroy before you sleep" } }
+                },
             };
         }
 
