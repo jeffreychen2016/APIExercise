@@ -69,6 +69,17 @@ namespace APIExercise.Controllers
             return Ok(myService);
         }
 
+        //[HttpPut("{myId}/AddFriend/{friendId}")]
+        ////https:///localhost:44334/api/Clinker/1/AddFriend/2
+        //public IActionResult AddFriend(int myId, int friendId)
+        //{
+        //    var me = _network.GetById(myId);
+        //    var friend = _network.GetById(friendId);
+
+        //    me.FriendList.Add(friend);
+        //    return Ok();
+        //}
+
         [HttpPut("{myId}/AddFriend/{friendId}")]
         //https:///localhost:44334/api/Clinker/1/AddFriend/2
         public IActionResult AddFriend(int myId, int friendId)
@@ -76,9 +87,27 @@ namespace APIExercise.Controllers
             var me = _network.GetById(myId);
             var friend = _network.GetById(friendId);
 
-            me.FriendList.Add(friend);
-            return Ok();
+            if (me.FriendList.Contains(friendId))
+            {
+                return Content("This clinker is already your friend.");
+            }
+            else
+            {
+                me.FriendList.Add(friendId);
+                friend.FriendList.Add(myId);
+                return Content("New friend is added.");
+            }
         }
+
+        //[HttpPut("{myId}/AddEnemy/{enemyId}")]
+        //public IActionResult AddEnemy(int myId, int EnemyId)
+        //{
+        //    var me = _network.GetById(myId);
+        //    var enemy = _network.GetById(EnemyId);
+
+        //    me.EnemyList.Add(enemy);
+        //    return Ok();
+        //}
 
         [HttpPut("{myId}/AddEnemy/{enemyId}")]
         public IActionResult AddEnemy(int myId, int EnemyId)
@@ -86,8 +115,37 @@ namespace APIExercise.Controllers
             var me = _network.GetById(myId);
             var enemy = _network.GetById(EnemyId);
 
-            me.EnemyList.Add(enemy);
-            return Ok();
+            if (me.EnemyList.Contains(EnemyId))
+            {
+                return Content("This clinker is already your enemy.");
+            }
+            else
+            {
+                me.EnemyList.Add(EnemyId);
+                enemy.EnemyList.Add(myId);
+                return Content("New enemy is added.");
+            }
+        }
+
+
+        [HttpPut("{myId}/PotentialCrew")]
+        public ActionResult<IEnumerable<Clinker>> ListFriendsFriend(int myId)
+        {
+            var me = _network.GetById(myId);
+
+            // return [[2,3]]
+            var myFriends = from clinker in _network.ClinkerNetwork
+                                where clinker.Id == myId
+                                select clinker.FriendList;
+
+            // return clinkers that are in myFriends list
+            //var friendsFriend = from clinker in _network.ClinkerNetwork
+            //                    where myFriends.Contains(clinker.Id)
+            //                    select clinker;
+
+
+            return Ok(friendsFriend);
+            // friendsfriend.Select(cl)
         }
     }
 }

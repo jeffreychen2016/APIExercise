@@ -20,21 +20,32 @@ namespace APIExercise.DataAccess
                     Id = 1, Name = "Joe",
                     IsLonely = true,
                     Interests = { Interest.BoardGame, Interest.Reading } ,
-                    Services = { new Service { Name = "Barber", Description = "Cut your hair" } }
+                    Services = { new Service { Name = "Barber", Description = "Cut your hair" } },
+                    FriendList = { 2,3 }
                 },
                 new Clinker
                 {
                     Id = 2, Name = "Bob",
                     IsLonely = true,
                     Interests = { Interest.Reading },
-                    Services = { new Service { Name = "Message", Description = "Full body message"} }
+                    Services = { new Service { Name = "Message", Description = "Full body message"} },
+                    FriendList = { 1 }
                 },
                 new Clinker
                 {
                     Id = 3, Name = "Kee",
                     IsLonely = true,
                     Interests = { Interest.Reading },
-                    Services = { new Service { Name = "Story Reader", Description = "One stroy before you sleep" } }
+                    Services = { new Service { Name = "Story Reader", Description = "One stroy before you sleep" } },
+                    FriendList = { 1 }
+                },
+                                new Clinker
+                {
+                    Id = 4, Name = "Paul",
+                    IsLonely = true,
+                    Interests = { Interest.Reading },
+                    Services = { new Service { Name = "???", Description = "some werid services" } },
+                    FriendList = {  }
                 },
             };
         }
