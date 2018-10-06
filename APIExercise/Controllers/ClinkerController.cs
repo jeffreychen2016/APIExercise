@@ -139,13 +139,11 @@ namespace APIExercise.Controllers
                                 select clinker.FriendList;
 
             // return clinkers that are in myFriends list
-            //var friendsFriend = from clinker in _network.ClinkerNetwork
-            //                    where myFriends.Contains(clinker.Id)
-            //                    select clinker;
-
+            var friendsFriend = from clinker in _network.ClinkerNetwork
+                                where myFriends.Single().Contains(clinker.Id)
+                                select clinker;
 
             return Ok(friendsFriend);
-            // friendsfriend.Select(cl)
         }
     }
 }
