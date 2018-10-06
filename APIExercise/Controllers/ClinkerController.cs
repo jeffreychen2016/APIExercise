@@ -97,9 +97,17 @@ namespace APIExercise.Controllers
                 friend.FriendList.Add(myId);
                 return Content("New friend is added.");
             }
-
-            
         }
+
+        //[HttpPut("{myId}/AddEnemy/{enemyId}")]
+        //public IActionResult AddEnemy(int myId, int EnemyId)
+        //{
+        //    var me = _network.GetById(myId);
+        //    var enemy = _network.GetById(EnemyId);
+
+        //    me.EnemyList.Add(enemy);
+        //    return Ok();
+        //}
 
         [HttpPut("{myId}/AddEnemy/{enemyId}")]
         public IActionResult AddEnemy(int myId, int EnemyId)
@@ -107,9 +115,18 @@ namespace APIExercise.Controllers
             var me = _network.GetById(myId);
             var enemy = _network.GetById(EnemyId);
 
-            me.EnemyList.Add(enemy);
-            return Ok();
+            if (me.EnemyList.Contains(EnemyId))
+            {
+                return Content("This clinker is already your enemy.");
+            }
+            else
+            {
+                me.EnemyList.Add(EnemyId);
+                enemy.EnemyList.Add(myId);
+                return Content("New enemy is added.");
+            }
         }
+
 
         [HttpPut("{myId}/PotentialCrew/{friendId}")]
         public ActionResult<IEnumerable<Clinker>> ListFriendsFriend(int myId, int friendId)
