@@ -128,16 +128,23 @@ namespace APIExercise.Controllers
         }
 
 
-        [HttpPut("{myId}/PotentialCrew/{friendId}")]
-        public ActionResult<IEnumerable<Clinker>> ListFriendsFriend(int myId, int friendId)
+        [HttpPut("{myId}/PotentialCrew")]
+        public ActionResult<IEnumerable<Clinker>> ListFriendsFriend(int myId)
         {
             var me = _network.GetById(myId);
-            var friend = _network.GetById(friendId);
 
+            // return [[2,3]]
             var myFriends = from clinker in _network.ClinkerNetwork
                                 where clinker.Id == myId
                                 select clinker.FriendList;
-            return Ok(myFriends);
+
+            // return clinkers that are in myFriends list
+            //var friendsFriend = from clinker in _network.ClinkerNetwork
+            //                    where myFriends.Contains(clinker.Id)
+            //                    select clinker;
+
+
+            return Ok(friendsFriend);
             // friendsfriend.Select(cl)
         }
     }
