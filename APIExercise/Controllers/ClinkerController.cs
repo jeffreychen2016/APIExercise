@@ -69,6 +69,17 @@ namespace APIExercise.Controllers
             return Ok(myService);
         }
 
+        //[HttpPut("{myId}/AddFriend/{friendId}")]
+        ////https:///localhost:44334/api/Clinker/1/AddFriend/2
+        //public IActionResult AddFriend(int myId, int friendId)
+        //{
+        //    var me = _network.GetById(myId);
+        //    var friend = _network.GetById(friendId);
+
+        //    me.FriendList.Add(friend);
+        //    return Ok();
+        //}
+
         [HttpPut("{myId}/AddFriend/{friendId}")]
         //https:///localhost:44334/api/Clinker/1/AddFriend/2
         public IActionResult AddFriend(int myId, int friendId)
@@ -76,8 +87,18 @@ namespace APIExercise.Controllers
             var me = _network.GetById(myId);
             var friend = _network.GetById(friendId);
 
-            me.FriendList.Add(friend);
-            return Ok();
+            if (me.FriendList.Contains(friendId))
+            {
+                return Content("This clinker is already your friend.");
+            }
+            else
+            {
+                me.FriendList.Add(friendId);
+                friend.FriendList.Add(myId);
+                return Content("New friend is added.");
+            }
+
+            
         }
 
         [HttpPut("{myId}/AddEnemy/{enemyId}")]

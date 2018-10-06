@@ -21,7 +21,7 @@ namespace APIExercise.DataAccess
                     IsLonely = true,
                     Interests = { Interest.BoardGame, Interest.Reading } ,
                     Services = { new Service { Name = "Barber", Description = "Cut your hair" } },
-                    FriendList = { new Clinker { Name = "John"} }
+                    FriendList = { 2,3 }
                 },
                 new Clinker
                 {
@@ -29,7 +29,7 @@ namespace APIExercise.DataAccess
                     IsLonely = true,
                     Interests = { Interest.Reading },
                     Services = { new Service { Name = "Message", Description = "Full body message"} },
-                    FriendList = { new Clinker { Name = "Pope"} }
+                    FriendList = { 1 }
                 },
                 new Clinker
                 {
@@ -37,7 +37,15 @@ namespace APIExercise.DataAccess
                     IsLonely = true,
                     Interests = { Interest.Reading },
                     Services = { new Service { Name = "Story Reader", Description = "One stroy before you sleep" } },
-                    FriendList = { new Clinker { Name = "Jason"} }
+                    FriendList = { 1 }
+                },
+                                new Clinker
+                {
+                    Id = 4, Name = "Paul",
+                    IsLonely = true,
+                    Interests = { Interest.Reading },
+                    Services = { new Service { Name = "???", Description = "some werid services" } },
+                    FriendList = {  }
                 },
             };
         }
